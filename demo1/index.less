@@ -1,0 +1,67 @@
+
+@boder: 1px solid #e5e5e5;
+
+*{
+    font: 14px 'Microsoft Yahei';
+    line-height: 1.5;
+}
+html,body{
+    padding: 0;
+    margin: 0;
+}
+.flex-box{
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+}
+
+
+.item{
+    .flex-box;
+    width: 100%;
+    padding: 8px;
+    /*主轴左到右布局*/
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    .icon, .content{
+        display: inline-block
+    }
+    .icon{
+        width: 45px;
+        height: 45px;
+        padding-right: 10px;
+    }
+    .content{
+        //是否允许元素放大；默认为0：不允许  其余就是可放大
+        -webkit-box-flex: 1.0;   
+        -moz-flex-grow: 1;
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+
+
+    }
+}
+p{
+    margin: 0;
+    margin-bottom: 3px;
+}
+p.text{
+    &.gray{
+        color: #888888;
+    }
+    &.blue{
+        color: #007ACC;
+    }
+    &.small{
+        font-size: 12px;
+    }
+    &.big{
+        font-size: 16px;
+    }
+}
+
