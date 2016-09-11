@@ -1,0 +1,134 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background: #f2f2f2;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .box {
+            width: 670px;
+            height: 500px;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .box .content,
+        .msg-box {
+            border-bottom: 1px solid #e5e5e5;
+            overflow-y: auto;
+        }
+        
+        .box .content {
+            height: 330px;
+            padding: 10px;
+        }
+        
+        .box .msg-box {
+            height: 170px;
+        }
+        
+        .box .msg-box textarea {
+            width: 100%;
+            height: 157px;
+            padding: 8px;
+            border: none;
+        }
+        
+        .box footer {
+            height: 40px;
+            background: #f0f0f0;
+        }
+        
+        .item {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .item .nickname {
+            width: 60px;
+        }
+        
+        .item .msg {
+            padding-left: 10px;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <section class="content" onmousedown="mousedown()" onmouseup="mouseup()"></section>
+        <section class="msg-box">
+            <textarea id="msg" placeholder="请输入你的信息..."></textarea>
+        </section>
+        <footer>
+            <div>
+                <button type="button" onclick="send()">发送</button>
+            </div>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        window.onload = (() => {
+            let index = 1;
+            let msg = document.querySelector('#msg');
+            let timer = setInterval(() => {
+                msg.innerHTML = 'hello ' + index;
+                send();
+                index++;
+            }, 500)
+        })
+
+        let flag = false;
+
+        function send() {
+            let content = document.querySelector('.content');
+            let msg = document.querySelector('#msg');
+            if (msg.value != '') {
+                content.appendChild(createDOM(msg.value));
+            }
+            if (!flag) {
+                content.scrollTop = content.scrollHeight;
+            }
+        }
+
+        function createDOM(message) {
+            let div = document.createElement('div');
+            div.className = 'item';
+            let nickname = document.createElement('div');
+            nickname.className = 'nickname';
+            nickname.innerHTML = 'unknow:'
+            let msg = document.createElement('div');
+            msg.className = 'msg';
+            msg.innerHTML = message;
+            div.appendChild(nickname);
+            div.appendChild(msg);
+            return div;
+        }
+
+        function mousedown() {
+            flag = true;
+        }
+
+        function mouseup() {
+            flag = false;
+        }
+    </script>
+</body>
+
+</html>
